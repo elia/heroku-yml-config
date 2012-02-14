@@ -10,7 +10,7 @@ class Heroku::Command::Config
     config_file_path = args.shift
     config_file_path = File.expand_path(config_file_path)
     config_hash = YAML.load_file(config_file_path)
-    vars = config_hash.inject({}) { |h, (k,v)| h[k.upcase]=v.to_s}
+    vars = config_hash.inject({}) { |h, (k,v)| h[k.upcase]=v.to_s; h}
     
     display "Found config vars...", true
     display_vars(vars, :long => true, :shell => true)
