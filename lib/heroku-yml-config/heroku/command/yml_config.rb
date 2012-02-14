@@ -9,9 +9,9 @@ class Heroku::Command::Config
     
     config_file_path = args.shift
     config_file_path = File.expand_path(config_file_path)
-    vars = YAML.load_file(config_file_path)
-    # system 'heroku', 'config:add', *config_hash.to_a.map{|(k,v)| "#{k.upcase}=#{v}"}
-  
+    config_hash = YAML.load_file(config_file_path)
+    vars = config_hash.inject({}) { |h, (k,v)| h[k.upcase]=v.to_s}
+    
     # try to get the app to fail fast
     detected_app = app
     
