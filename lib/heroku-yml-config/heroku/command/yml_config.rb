@@ -12,6 +12,9 @@ class Heroku::Command::Config
     config_hash = YAML.load_file(config_file_path)
     vars = config_hash.inject({}) { |h, (k,v)| h[k.upcase]=v.to_s}
     
+    display "Found config vars...", true
+    display_vars(vars, :long => true, :shell => true)
+    
     # try to get the app to fail fast
     detected_app = app
     
