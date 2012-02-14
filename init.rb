@@ -1,1 +1,1 @@
-require 'heroku-yml-config/heroku/command/labs'
+require 'heroku-yml-config/heroku/command/yml_config'
